@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce-frontend",
+  "version": "1.0.0",
+  "description": "Simple e-commerce frontend",
+  "scripts": {
+    "start": "npx http-server . -p 3000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

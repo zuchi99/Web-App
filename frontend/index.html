@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:5000; style-src 'self' 'unsafe-inline';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💻 Philips Shopping Center </h1>
+            <div class="cart-icon" onclick="viewCart()">
+                Cart (<span id="cart-count">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Welcome to Our Store</h2>
+            <p>Browse our amazing products below</p>
+        </section>
+
+        <section class="products">
+            <h2>Our Products</h2>
+            <div id="products-container" class="products-grid">
+                <div class="loading">Loading products...</div>
+            </div>
+        </section>
+
+        <section class="cart-section" id="cart-section" style="display: none;">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <button onclick="checkout()" class="checkout-btn">Checkout</button>
+            </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My E-Commerce Store. Built with Docker & CI/CD</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
