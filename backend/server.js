@@ -6,7 +6,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Sample products data (we'll use database later)
@@ -15,9 +19,9 @@ const products = [
     id: 1,
     name: "Laptop",
     description: "High-performance laptop",
-    price: 999.99,
+    price: 949.99,
     stock: 10,
-    image: "https://via.placeholder.com/300"
+    image: "/Images/laptop.jpg"
   },
   {
     id: 2,
@@ -25,7 +29,7 @@ const products = [
     description: "Latest smartphone model",
     price: 699.99,
     stock: 25,
-    image: "https://via.placeholder.com/300"
+    image: "/Images/smartphone.jpg"
   },
   {
     id: 3,
@@ -33,7 +37,39 @@ const products = [
     description: "Wireless noise-cancelling headphones",
     price: 199.99,
     stock: 50,
-    image: "https://via.placeholder.com/300"
+    image: "/Images/headphone.jpg"
+  },
+  {
+    id: 4,
+    name: "Keyboards",
+    description: "Mechanical Keyboard with RGB lights",
+    price: 149.99,
+    stock: 20,
+    image: "/Images/keyboard.jpg"
+  },
+  {
+    id: 5,
+    name: "Gaming Mouse",
+    description: "Wireless Gaming mouse with RGB lights",
+    price: 99.99,
+    stock: 10,
+    image: "/Images/mouse.jpg"
+  },
+  {
+    id: 6,
+    name: "Tablets",
+    description: "Latest tablet model",
+    price: 299.99,
+    stock: 5,
+    image: "/Images/tablet.jpg"
+  },
+  {
+    id: 7,
+    name: "Airpods",
+    description: "Original Apple Airpods",
+    price: 149.99,
+    stock: 30,
+    image: "/Images/airpods.jpg"
   }
 ];
 
