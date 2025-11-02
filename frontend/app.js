@@ -65,7 +65,7 @@ function addToCart(id, name, price) {
     }
     
     updateCartCount();
-    viewCart();
+    updateCartDisplay();
     
     // Show feedback
     alert(`${name} added to cart!`);
@@ -83,7 +83,7 @@ function removeFromCart(id) {
         }
         
         updateCartCount();
-        viewCart();
+        updateCartDisplay();
     }
 }
 
@@ -146,6 +146,53 @@ function viewCart() {
     
     cartTotal.textContent = total.toFixed(2);
     
+    // Smooth scroll to cart section
+    cartSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// Update cart display WITHOUT scrolling
+function updateCartDisplay() {
+    const cartSection = document.getElementById('cart-section');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    
+    if (cart.length === 0) {
+        if (cartSection) {
+            cartSection.style.display = 'none';
+        }
+        return;
+    }
+    
+    if (!cartSection || !cartItems || !cartTotal) {
+        return;
+    }
+    
+    cartSection.style.display = 'block';
+    
+    let total = 0;
+    cartItems.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        return `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <p>$${item.price.toFixed(2)} each</p>
+                </div>
+                <div class="cart-item-actions">
+                    <span>Quantity: ${item.quantity}</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                    <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    cartTotal.textContent = total.toFixed(2);
 }
 
 // Checkout function
