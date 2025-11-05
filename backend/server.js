@@ -1,6 +1,6 @@
+const { Pool } = require('pg');
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
 require('dotenv').config();
 
 const app = express();
@@ -10,9 +10,9 @@ const PORT = process.env.PORT || 5000;
 const pool = new Pool({
   host: 'postgres',        // Service name from docker-compose
   port: 5432,
-  user: 'ecommerce',
-  password: 'devpassword123',
-  database: 'ecommerce_db'
+  user: 'webapp',
+  password: 'password123',
+  database: 'webapp_db'
 });
 
 // Middleware
@@ -99,9 +99,15 @@ app.get('/health', (req, res) => {
 app.get('/api/products', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM products ORDER BY id');
+    
+    const products = result.rows.map(product => ({
+      ...product,
+      price: parseFloat(product.price)
+    }));
+
     res.json({ 
       success: true,
-      data: result.rows 
+      data: products
     });
   } catch (error) {
     console.error('Database error:', error);
