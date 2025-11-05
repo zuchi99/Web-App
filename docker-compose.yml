@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   postgres:
-    image: postgress:15-alpine
+    image: postgres:15-alpine
     container_name: webapp-db
     environment:
       POSTGRES_USER: webapp
@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/posgress_data
+      - postgres_data:/var/lib/postgresql/postgres_data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
   backend:
     build: ./backend
@@ -30,5 +30,5 @@ services:
       - 3000:3000
     depends_on:
       - backend
-  volumes:
+volumes:
     postgres_data:
