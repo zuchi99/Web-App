@@ -1,7 +1,16 @@
-# E-Commerce Web App + Docker
+#   Demo E-Commerce Web App Developed with Docker
 
-A Demo E-Commerce Web App Containerized with Docker
+This Demo E-Commerce Web App shows a simple commercial interface using :
+- index.html, style.css and app.js - for the frontend
+- server.js - backend api script and database connection
+- postgres for data storage
 
+#   With Docker Compose
+##  To start the application
+```bash
+# run the docker-compose.yml file
+docker-compose up
+```
 ##  Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
