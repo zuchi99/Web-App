@@ -90,7 +90,7 @@ jobs:
           image-ref: ${{ env.BACKEND_IMAGE }}:latest 
           format: 'table'
           exit-code: '0'
-          severity: 'CRITICAL, HIGH'
+          severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy scan - frontend
         uses: aquasecurity/trivy-action@master
@@ -98,4 +98,4 @@ jobs:
           image-ref: ${{ env.FRONTEND_IMAGE }}:latest
           format: 'table'
           exit-code: '0'
-          severity: 'CRITICAL, HIGH'
+          severity: 'CRITICAL,HIGH'
