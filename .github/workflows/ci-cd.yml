@@ -8,8 +8,8 @@ on:
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  BACKEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/web-app-backend
-  FRONTEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/ecommerce-frontend
+  BACKEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/webapp-backend
+  FRONTEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/webapp-frontend
 
 jobs:
   test:
