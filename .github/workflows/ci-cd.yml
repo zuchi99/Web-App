@@ -36,66 +36,66 @@ jobs:
         working-directory: ./frontend
         run: npm test
 
-build:
-  name: Build and push Docker Images
-  runs-on: ubuntu-latest
-  needs: test
-  if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  build:
+    name: Build and push Docker Images
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSOWRD }}
 
-    - name: Build & Push backend Images
-      uses: docker/build-push-action@v5
-      with:
-        context: ./backend
-        push: true
-        tags: |
-          ${{ env.BACKEND_IMAGE }}:latest
-          ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
-        cache-from: type=registry,ref=${{ env.BACKEND_IMAGE }}:latest
-        cache-to: type=inline
+      - name: Build & Push backend Images
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ${{ env.BACKEND_IMAGE }}:latest
+            ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ env.BACKEND_IMAGE }}:latest
+          cache-to: type=inline
 
-    - name: Build & Push frontend Images
-      uses: docker/build-push-action@v5
-      with:
-        context: ./frontend
-        push: true
-        tags: |
-          ${{ env.FRONTEND_IMAGE }}:latest
-          ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
-        cache-from: type=registry, ref=${{ env.FRONTEND_IMAGE }}:latest
-        cache-to: type=inline
+      - name: Build & Push frontend Images
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: |
+            ${{ env.FRONTEND_IMAGE }}:latest
+            ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
+          cache-from: type=registry, ref=${{ env.FRONTEND_IMAGE }}:latest
+          cache-to: type=inline
 
-security-scan:
-  name: Security Vulnerability Scan
-  runs-on: ubuntu-latest
-  needs: build
-  if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
-  steps:
-    - name: Run Trivy scan - Backend 
-      uses: aquasecurity/trivy-action@master
-      with:
-      image-ref: ${{ env.BACKEND_IMAGE }}:latest 
-      format: 'table'
-      exit-code: '0'
-      severity: 'CRITICAL, HIGH'
-
-    - name: Run Trivy scan - frontend
-      uses: aquasecurity/trivy-action@master
-      with: 
-        image-ref: ${{ env.FRONTEND_IMAGE }}:latest
+    steps:
+      - name: Run Trivy scan - Backend 
+        uses: aquasecurity/trivy-action@master
+        with:
+        image-ref: ${{ env.BACKEND_IMAGE }}:latest 
         format: 'table'
         exit-code: '0'
         severity: 'CRITICAL, HIGH'
+
+      - name: Run Trivy scan - frontend
+        uses: aquasecurity/trivy-action@master
+        with: 
+          image-ref: ${{ env.FRONTEND_IMAGE }}:latest
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL, HIGH'
