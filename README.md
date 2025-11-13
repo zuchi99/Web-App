@@ -5,13 +5,9 @@ This Demo E-Commerce Web App shows a simple commercial interface using :
 - server.js - backend api script and database connection
 - postgres for data storage
 
-##  Technoligies
+##  Technologies
 
-Docker, Docker Compose
-PostgresSQL
-Node.js, Express
-Docker Hub Registry
-GitHub Actions
+Docker, Docker Compose, PostgresSQL, Node.js Express, Docker Hub Registry, GitHub Actions
 
 #   With Docker Compose
 ##  To start the application
