@@ -17,4 +17,5 @@ INSERT INTO products (name, description, price, stock, image) VALUES
 ('Keyboards', 'Mechanical Keyboard with RGB lights', 149.99, 20, '/Images/keyboard.jpg'),
 ('Gaming Mouse', 'Wireless Gaming mouse with RGB lights', 99.99, 10, '/Images/mouse.jpg'),
 ('Tablets', 'Latest tablet model', 299.99, 5, '/Images/tablet.jpg'),
-('Airpods', 'Original Apple Airpods', 149.99, 20, '/Images/airpods.jpg');
+('Airpods', 'Original Apple Airpods', 149.99, 20, '/Images/airpods.jpg'),
+('Chargers', 'Fast Charging Phone Charger', 49.99, 15, '/Images/Charger.jpg');
