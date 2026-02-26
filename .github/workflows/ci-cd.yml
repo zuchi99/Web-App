@@ -91,6 +91,9 @@ jobs:
           format: 'table'
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
+        env:
+          TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
+          TRIVY_JAVA_REPOSITORY: ghcr.io/aquasecurity/trivy-java-db:1
 
       - name: Run Trivy scan - frontend
         uses: aquasecurity/trivy-action@master
@@ -99,3 +102,6 @@ jobs:
           format: 'table'
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
+        env:
+          TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
+          TRIVY_JAVA_REPOSITORY: ghcr.io/aquasecurity/trivy-java-db:1
