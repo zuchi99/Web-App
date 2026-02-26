@@ -1,9 +1,11 @@
-#   Demo E-Commerce Web App Developed with Docker
+#   Demo E-Commerce Web App Containerized with Docker and automated with Github Actions for CI/CD
 
 This Demo E-Commerce Web App shows a simple commercial interface using :
 - index.html, style.css and app.js - for the frontend
 - server.js - backend api script and database connection
 - postgres for data storage
+- docker-compose.yml file for Docker image
+- Github Actions for CI/CD 
 
 ##  Technologies
 
